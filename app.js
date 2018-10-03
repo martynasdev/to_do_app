@@ -33,6 +33,9 @@ app.post('/index', urlencodedParser, (req, res) => {
     res.redirect('/');
 });
 
+console.log('hello');
+console.log('hello');
+
 app.get('/index/:id', (req, res) =>{
     let appInputText = [];
     if(fs.existsSync('./public/nauji.txt')){
@@ -42,4 +45,4 @@ app.get('/index/:id', (req, res) =>{
         fs.writeFileSync('./public/tasks.txt', JSON.stringify(receptes));
     }
     res.redirect('/')
-})
+});
