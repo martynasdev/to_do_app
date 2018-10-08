@@ -6,24 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/assets/main.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="appToDo">
+    <div id="appToDo">
         <div class="appTitle">
             <h1>What do you have to do?</h1>
         </div>
         <div class="appInput">
             <form method="POST" action="/index">
-                <input class="inputTextArea" type="text" name="appInputText" placeholder="Write task here..." autocomplete="off">
+                <input class="inputTextArea" type="text" name="appInputText" placeholder="Write task here..."
+                    autocomplete="off">
                 <button type="submit" value="prideti">+</button>
             </form>
         </div>
         <div class="appContentList">
             <h2>
                 <% for(let i = 0; i < appInputText.length; i++){ %>
-                <div class="taskP" href="/edit/<%= i %>">
-                        <%= appInputText[i].appInputText %>
+                <div id="taskP" href="/delete/<%= i %>">
+                    <form method="POST" action="/index">
+                        <input class="task inputTextArea" type="text" name="appInputText" value="<%= appInputText[i].appInputText %>"
+                            autocomplete="off">
+                        <a id="delete" class="fas fa-trash" href="/delete/<%= i %>"></a>
+                        <!-- <a href="/checked/<%= i %>">check</a> -->
+                    </form>
                 </div>
                 <% } %>
             </h2>

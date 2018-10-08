@@ -29,20 +29,42 @@ app.post('/index', urlencodedParser, (req, res) => {
     let paverciuMasyvuIsString = JSON.parse(duomenysIsFailo);
     paverciuMasyvuIsString.push(req.body);
     fs.writeFileSync('./public/tasks.txt', JSON.stringify(paverciuMasyvuIsString));
-    
+
     res.redirect('/');
 });
 
-console.log('hello');
-console.log('hello');
-
-app.get('/index/:id', (req, res) =>{
+app.get('/index/:id', (req, res) => {
     let appInputText = [];
-    if(fs.existsSync('./public/nauji.txt')){
-        appInputText = fs.readFileSync('./public/nauji.txt', 'utf8');
+    if (fs.existsSync('./public/tasks.txt')) {
+        appInputText = fs.readFileSync('./public/tasks.txt', 'utf8');
         appInputText = JSON.parse(receptes);
         appInputText.splice(req.params.id, 1);
         fs.writeFileSync('./public/tasks.txt', JSON.stringify(receptes));
     }
+    if (appInputText > 3) {
+        fs.existsSync("appToDo").fs.writeFileSync('appToDoo');
+    }
     res.redirect('/')
 });
+
+app.get('/delete/:id', (req, res) => {
+    let receptes = [];
+    if (fs.existsSync('./public/tasks.txt')) {
+        receptes = fs.readFileSync('./public/tasks.txt', 'utf8');
+        receptes = JSON.parse(receptes);
+        receptes.splice(req.params.id, 1);
+        fs.writeFileSync('./public/tasks.txt', JSON.stringify(receptes));
+    }
+    res.redirect('/')
+})
+
+// app.get('/check/:id', (req, res) =>{
+//     let receptes = [];
+//     if(fs.existsSync('./public/tasks.txt')){
+//         receptes = fs.readFileSync('./public/tasks.txt', 'utf8');
+//         receptes = JSON.parse(receptes);
+//         receptes[req.params.id].checked = true;
+//         fs.writeFileSync('./public/tasks.txt', JSON.stringify(receptes));
+//     }
+//     res.redirect('/')
+// })
