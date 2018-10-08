@@ -36,7 +36,7 @@ form{
     display: flex;
 }
 .appContentList{
-    height: 320px;
+    height: auto;
     width: 500px;
     background-color: #9FDAFF;
 }
